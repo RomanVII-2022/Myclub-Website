@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Resaults:</h1>
+
+<table class="table table-striped table-hover table-bordered">
+    {% for venue in venues %}
+    <tr>
+        <th><a href="{% url 'venuedetail' venue.id %}"><h5>{{venue.name}}</h5></a></th>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

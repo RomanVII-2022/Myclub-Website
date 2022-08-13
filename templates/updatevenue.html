@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input class="btn btn-secondary" type="submit" value="Update Venue">
+    </form>
+</div>
+{% endif %}
+
+{% endblock %}

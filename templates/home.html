@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center>
+    Time: {{time}}
+<h1>Hello {{name}}. Events Set For {{month}}, {{year}}</h1>
+<h4>{{cal|safe}}</h4>
+<br/><br/>
+copyright c {{current_year}}
+</center>
+{% endblock %}

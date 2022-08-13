@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Venue Details:</h1>
+<br/>
+
+<div class="card">
+    <div class="card-header">
+      <h4>{{venues}}</h4>
+      <h4></h4>
+    </div>
+    <ul>
+    <div class="card-body">
+      <li><h7 class="card-title">Name: {{venues.name}}</h7></li>
+      <li><h7 class="card-title">Address: {{venues.address}}</h7></li>
+      <li><h7 class="card-title">Website: <a href="{{venues.web}}">{{venues.web}}</a></h7></li>
+      <li><h7 class="card-title">Zip_code: {{venues.zip_code}}</h7></li>
+      <li><h7 class="card-title">Phone: {{venues.phone}}</h7></li>
+      <li><h7 class="card-title">Email Address: {{venues.email_address}}</h7></li>
+    </div>
+    </ul>
+    {% if venues.image %}
+    <img src="{{venues.image.url}}" width="300" height="200">
+    {% endif %}
+</div>
+<br/>
+
+
+{% endblock %}

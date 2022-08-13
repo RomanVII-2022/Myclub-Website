@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center>
+<h1>Admin Portal</h1>
+</center>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+          Summary
+        </div>
+        <div class="card-body">
+            <ul>
+                <li>Number of Events: {{event_number}}</li>
+                <li>Number of Venues: {{venue_number}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<br/><br/>
+
+<form method="POST">
+    {% csrf_token %}
+    <table class="table table-striped table-hover table-bordered">
+        {% for event in events %}
+        <tr>
+            <td><a href=""><h5></h5>{{event.name}}</a></td>
+            <td align="right">
+                {% if event.approved %}
+                <div class="form-check">
+                    <input class="form-check-input" name="boxes" type="checkbox" value="{{event.id}}" id="flexCheckChecked" checked>
+                </div>
+                {% else %}
+                <div class="form-check">
+                    <input class="form-check-input" name="boxes" type="checkbox" value="{{event.id}}" id="flexCheckDefault">
+                </div>
+                {% endif %}
+            </td>
+                
+        </tr>
+        {% endfor %}
+        
+    </table>
+    <button class="btn btn-primary" type="submit">Button</button>
+</form>
+<hr><br/>
+
+{% endblock %}

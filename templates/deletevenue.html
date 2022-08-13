@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  {% if venues.owner == user.id %}
+  <h1>Venue Details:</h1>
+  <br/>
+
+  <div class="card">
+      <div class="card-header">
+        <h4>Are you sure you want to delete this venue? </h4>
+        <h4></h4>
+      </div>
+      <ul>
+      <div class="card-body">
+        <li><h7 class="card-title">Name: {{venues.name}}</h7></li>
+        <li><h7 class="card-title">Address: {{venues.address}}</h7></li>
+        <li><h7 class="card-title">Website: <a href="{{venues.web}}">{{venues.web}}</a></h7></li>
+        <li><h7 class="card-title">Zip_code: {{venues.zip_code}}</h7></li>
+        <li><h7 class="card-title">Phone: {{venues.phone}}</h7></li>
+        <li><h7 class="card-title">Email Address: {{venues.email_address}}</h7></li>
+        
+      </div>
+      </ul>
+  </div>
+  <div class="form-group">
+      <form method="POST">
+          {% csrf_token %}
+          <input class="btn btn-primary" type="submit" value="Delete">
+      </form>
+  </div>
+  <br/>
+  {% else %}
+  You are not allowed here!!!!
+  {% endif %}
+{% endif %}
+
+{% endblock %}

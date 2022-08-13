@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <form class="d-flex" role="search">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+</div>
+<br/><br/>
+<h1>Events</h1>
+<br/>
+{% for event in events %}
+<div class="card">
+    <div class="card-header">
+      <h4><a href="{% url 'eventdetail' event.id %}"> {{event.name}}</a></h4>
+    </div>
+    <ul>
+    <div class="card-body">
+      <li><h7 class="card-title">Date: {{event.event_date}}</h7></li>
+      <li><h7 class="card-title">Venue: {{event.venue}}</h7></li>
+      <li><h7 class="card-title">Website: {{event.venue.web}}</h7></li>
+      <li><h7 class="card-title">Manager: {{event.manager}}</h7></li>
+      <li><h7 class="card-title">Description: {{event.description}}</h7></li>
+      <li><h7 class="card-title">Attendees: 
+        {% for attendee in event.attendees.all %}
+        {{attendee.first_name}} {{attendee.last_name}}<br/>
+        {% endfor %}</h7></li>
+      
+    </div>
+    </ul>
+    {% if user.is_authenticated %}
+      {% if user.id == event.manager.id %}
+      <div class="card-header">
+        <h4><a class="btw btw-secondary" href="{% url 'editevent' event.id %}">Edit</a></h4>
+      </div>
+      {% endif %}
+    {% endif %}
+</div>
+<br/>
+{% endfor %}
+
+{% endblock %}
